@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="Apple Watch">
+  <trk>
+    <name>Morning Run</name>
+    <trkseg>
+      <trkpt lat="37.77490" lon="-122.41940">
+        <ele>12</ele>
+        <time>2026-01-01T10:00:00Z</time>
+        <extensions>
+          <gpxtpx:TrackPointExtension xmlns:gpxtpx="http://www.garmin.com/xmlschemas/TrackPointExtension/v1">
+            <gpxtpx:hr>148</gpxtpx:hr>
+            <gpxtpx:cad>172</gpxtpx:cad>
+          </gpxtpx:TrackPointExtension>
+        </extensions>
+      </trkpt>
+      <trkpt lat="37.77580" lon="-122.41820">
+        <ele>14</ele>
+        <time>2026-01-01T10:05:00Z</time>
+        <extensions>
+          <gpxtpx:TrackPointExtension xmlns:gpxtpx="http://www.garmin.com/xmlschemas/TrackPointExtension/v1">
+            <gpxtpx:hr>156</gpxtpx:hr>
+            <gpxtpx:cad>176</gpxtpx:cad>
+          </gpxtpx:TrackPointExtension>
+        </extensions>
+      </trkpt>
+    </trkseg>
+  </trk>
+</gpx>
