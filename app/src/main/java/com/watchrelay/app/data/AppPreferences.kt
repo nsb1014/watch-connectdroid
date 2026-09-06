@@ -3,7 +3,7 @@ package com.watchrelay.app.data
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.security.crypto.EncryptedSharedPreferences
-import androidx.security.crypto.MasterKey
+import androidx.security.crypto.MasterKeys
 
 class AppPreferences(context: Context) {
     private val prefs: SharedPreferences = createPrefs(context)
@@ -44,13 +44,11 @@ class AppPreferences(context: Context) {
 
     private fun createPrefs(context: Context): SharedPreferences {
         return try {
-            val master = MasterKey.Builder(context)
-                .setKeyScheme(MasterKey.KeyScheme.AES256_GCM)
-                .build()
+            val master = MasterKeys.getOrCreate(MasterKeys.AES256_GCM_SPEC)
             EncryptedSharedPreferences.create(
-                context,
                 "watchrelay.secure",
                 master,
+                context,
                 EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
                 EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
             )

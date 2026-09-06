@@ -53,7 +53,7 @@ object FitParser {
                             5 -> sport = SportMapper.fromFit(value.toInt())
                             7 -> if (value > 0) durationMillis = value
                             9 -> distanceMeters = value / 100.0
-                            11 -> calories = value
+                            11 -> calories = value.toDouble()
                         }
                     }
                 }
