@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">WatchRelay</string>
+    <string name="receive_notification_title">WatchRelay is listening</string>
+    <string name="receive_notification_text">Send Apple Watch exports to this phone over Wi‑Fi.</string>
+</resources>
