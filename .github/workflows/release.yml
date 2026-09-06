@@ -1,0 +1,46 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+      - name: Build sideload APK
+        run: ./gradlew assembleDebug --no-daemon
+      - name: Package named APK
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          mkdir -p dist
+          cp app/build/outputs/apk/debug/app-debug.apk "dist/WatchRelay-${VERSION}.apk"
+          ls -lh "dist/WatchRelay-${VERSION}.apk"
+      - name: Publish GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: WatchRelay ${{ github.ref_name }}
+          draft: false
+          prerelease: false
+          files: dist/WatchRelay-*.apk
+          body: |
+            Sideload APK for WatchRelay. Install on a Galaxy S25 Ultra (or any phone on Android 8+) — this is not a Play Store build.
+
+            **Download** `WatchRelay-1.0.0.apk` below, copy it to the phone, and open it (allow installs from that source). Or:
+
+            ```
+            adb install -r WatchRelay-1.0.0.apk
+            ```
+
+            Apple Watch cannot pair with Android. Put the iPhone and the phone on the same Wi‑Fi, start **Wi‑Fi receive**, and send a Health/workout export to the address on screen (GPX, TCX, FIT, Health XML/ZIP, JSON, CSV). Use **Load sample workouts** if you want to try the UI first.
+
+            For Strava, create an API app at https://www.strava.com/settings/api with callback `watchrelay://strava/callback`, then paste the client id and secret in Settings.
